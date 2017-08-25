@@ -1,8 +1,9 @@
 package com.example.app
 
 import org.scalatra._
+import com.mongodb.casbah.Imports._
 
-class MyScalatraServlet extends MyScalatraWebAppStack {
+class MyScalatraMongoServlet(mongoColl: MongoCollection) extends MyScalatraWebAppStack {
 
   get("/") {
     <html>
@@ -11,6 +12,13 @@ class MyScalatraServlet extends MyScalatraWebAppStack {
         Say <a href="hello-scalate">hello to Scalate</a>.
       </body>
     </html>
+  }
+
+  post("/insert") {
+  	val key = params("key")
+  	val value = params("value")
+  	val newObj = MongoDBObject(key->value)
+  	mongoColl += newObj
   }
 
 }
