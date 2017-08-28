@@ -3,7 +3,7 @@ package com.example.app
 import org.scalatra._
 import com.mongodb.casbah.Imports._
 
-class MyScalatraMongoServlet(mongoColl: MongoCollection) extends MyScalatraWebAppStack {
+class MyScalatraMongoServlet(mongoColl: MongoCollection) extends MyScalatraWebAppStack with SimpleMongoDbJsonConversion {
 
   get("/") {
     <html>
