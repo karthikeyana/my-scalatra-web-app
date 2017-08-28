@@ -21,4 +21,9 @@ class MyScalatraMongoServlet(mongoColl: MongoCollection) extends MyScalatraWebAp
   	mongoColl += newObj
   }
 
+  get("/users") {
+  	mongoColl.find()
+  	for { x <- mongoColl } yield x
+  }
+
 }
